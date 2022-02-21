@@ -63,8 +63,7 @@ class App extends Component {
 
   getHighScore = () => {
     const scores = this.state.players.map((p) => p.score);
-    const highScore = Math.max({ ...scores });
-    console.log(scores, highScore);
+    const highScore = Math.max(...scores);
     if (highScore) {
       return highScore;
     }

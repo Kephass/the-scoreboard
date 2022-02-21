@@ -12,6 +12,7 @@ class Player extends PureComponent {
     score: PropTypes.number.isRequired,
     id: PropTypes.number,
     index: PropTypes.number,
+    isHighScore: PropTypes.bool,
   };
 
   render() {
@@ -23,7 +24,7 @@ class Player extends PureComponent {
           <button className="remove-player" onClick={() => removePlayer(id)}>
             ✖
           </button>
-          <Icon isHighScore={this.props.isHighScore} />
+          <Icon isHighScore={isHighScore} />
           {name}
         </span>
 
