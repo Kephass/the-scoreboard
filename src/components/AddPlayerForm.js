@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
+import { Consumer } from "./Context";
 
-class AddPlayerForm extends Component {
+const AddPlayerForm = () => {
   /*
   * Replaced with the createRef() method. Ref
   state = {
@@ -15,32 +15,31 @@ class AddPlayerForm extends Component {
   };
 */
 
-  static propTypes = {
-    handleSubmit: PropTypes.func,
-  };
+  const playerInput = React.createRef();
 
-  playerInput = React.createRef();
+  return (
+    <Consumer>
+      {(context) => {
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          context.actions.addPlayer(playerInput.current.value);
+          //reset input field to empty
+          e.currentTarget.reset();
+        };
+        return (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              ref={playerInput}
+              placeholder="Enter a player's name"
+            />
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.addPlayer(this.playerInput.current.value);
-    //reset input field to empty
-    e.currentTarget.reset();
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          ref={this.playerInput}
-          placeholder="Enter a player's name"
-        />
-
-        <input type="submit" value="Add Player" />
-      </form>
-    );
-  }
-}
+            <input type="submit" value="Add Player" />
+          </form>
+        );
+      }}
+    </Consumer>
+  );
+};
 
 export default AddPlayerForm;
