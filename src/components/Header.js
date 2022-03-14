@@ -12,7 +12,7 @@ const Header = ({ title }) => {
   );
 };
 
-// Default value when not specified my Parent. Also performs typechecking on them
+// Default value when not specified by Parent. Also performs typechecking on them
 // Header.defaultProps = {
 //   title: "Scoreboard",
 // };
